@@ -125,7 +125,7 @@ export default function MarkAttendanceDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             {session?.user?.role === "EMPLOYEE"
@@ -185,7 +185,7 @@ export default function MarkAttendanceDialog({
         )}
 
         <form onSubmit={handleSubmit}>
-          <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
             {session?.user?.role !== "EMPLOYEE" && (
               <div className="grid gap-2">
                 <Label>Employee</Label>

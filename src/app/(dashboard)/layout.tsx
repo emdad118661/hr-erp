@@ -1,7 +1,7 @@
 // src/app/(dashboard)/layout.tsx
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import Sidebar from "@/components/layout/Sidebar";
+import MobileSidebar from "@/components/layout/MobileSidebar";
 
 export default async function DashboardLayout({
   children,
@@ -15,13 +15,15 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <Sidebar user={session.user} />
+    <div className="min-h-screen bg-gray-100">
+      {/* Mobile & Desktop Sidebar */}
+      <MobileSidebar user={session.user} />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto p-8">
-        {children}
+      <main className="lg:pl-64">
+        <div className="p-4 sm:p-6 lg:p-8">
+          {children}
+        </div>
       </main>
     </div>
   );

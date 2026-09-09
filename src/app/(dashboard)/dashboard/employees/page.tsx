@@ -27,6 +27,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { ResponsiveTable } from "@/components/ui/responsive-table";
 
 interface Employee {
   _id: string;
@@ -130,74 +131,76 @@ export default function EmployeesPage() {
               <Loader2 className="w-6 h-6 animate-spin" />
             </div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>Joined Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {employees.length > 0 ? (
-                  employees.map((employee) => (
-                    <TableRow key={employee._id}>
-                      <TableCell className="font-medium">
-                        {employee.name}
-                      </TableCell>
-                      <TableCell>{employee.email}</TableCell>
-                      <TableCell>
-                        <Badge
-                          variant={
-                            employee.role === "ADMIN"
-                              ? "default"
-                              : employee.role === "HR"
-                                ? "secondary"
-                                : "outline"
-                          }
-                        >
-                          {employee.role}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        {new Date(employee.createdAt).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          {session?.user?.role !== "EMPLOYEE" && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleEdit(employee)}
-                            >
-                              <Edit className="w-4 h-4" />
-                            </Button>
-                          )}
-                          {session?.user?.role === "ADMIN" && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="text-red-500 hover:text-red-700"
-                              onClick={() => handleDeleteClick(employee._id)}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          )}
-                        </div>
+            <ResponsiveTable>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Role</TableHead>
+                    <TableHead>Joined Date</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {employees.length > 0 ? (
+                    employees.map((employee) => (
+                      <TableRow key={employee._id}>
+                        <TableCell className="font-medium">
+                          {employee.name}
+                        </TableCell>
+                        <TableCell>{employee.email}</TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={
+                              employee.role === "ADMIN"
+                                ? "default"
+                                : employee.role === "HR"
+                                  ? "secondary"
+                                  : "outline"
+                            }
+                          >
+                            {employee.role}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          {new Date(employee.createdAt).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            {session?.user?.role !== "EMPLOYEE" && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleEdit(employee)}
+                              >
+                                <Edit className="w-4 h-4" />
+                              </Button>
+                            )}
+                            {session?.user?.role === "ADMIN" && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="text-red-500 hover:text-red-700"
+                                onClick={() => handleDeleteClick(employee._id)}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            )}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={5} className="text-center text-gray-500 py-8">
+                        No employees found. Click "Add Employee" to create one.
                       </TableCell>
                     </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={5} className="text-center text-gray-500 py-8">
-                      No employees found. Click "Add Employee" to create one.
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
+                  )}
+                </TableBody>
+              </Table>
+            </ResponsiveTable>
           )}
         </CardContent>
       </Card>

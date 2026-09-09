@@ -128,3 +128,86 @@
     @apply font-sans;
   }
 }
+
+/* ✅ Responsive Utilities - নতুন যুক্ত করা হয়েছে */
+@layer components {
+  /* Container */
+  .responsive-container {
+    @apply w-full px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Heading */
+  .responsive-heading {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+
+  /* Card */
+  .responsive-card {
+    @apply p-4 sm:p-6;
+  }
+
+  /* Dialog */
+  .responsive-dialog {
+    @apply w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto;
+  }
+
+  /* Table Wrapper */
+  .table-responsive {
+    @apply w-full overflow-auto;
+  }
+
+  .table-responsive-inner {
+    @apply min-w-[800px];
+  }
+
+  /* Button Groups */
+  .button-group-responsive {
+    @apply flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between;
+  }
+
+  /* Grid Layouts */
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+  }
+
+  .grid-responsive-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6;
+  }
+
+  /* Hide scrollbar for mobile menu */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ✅ Mobile First Utilities */
+@layer utilities {
+  /* Text Scaling */
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  /* Padding */
+  .p-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  /* Margin */
+  .mb-responsive {
+    @apply mb-4 sm:mb-6 lg:mb-8;
+  }
+
+  /* Height */
+  .h-screen-mobile {
+    @apply h-screen lg:h-auto;
+  }
+}

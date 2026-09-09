@@ -28,6 +28,7 @@ import {
 import { toast } from "sonner";
 import MarkAttendanceDialog from "@/components/attendance/MarkAttendanceDialog";
 import ApproveAttendanceDialog from "@/components/attendance/ApproveAttendanceDialog";
+import { ResponsiveTable } from "@/components/ui/responsive-table";
 
 interface Attendance {
   _id: string;
@@ -158,10 +159,9 @@ export default function AttendancePage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Attendance</h1>
-
-        <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+        <h1 className="text-2xl sm:text-3xl font-bold">Attendance</h1>
+        <div className="flex flex-wrap gap-2">
           {/* Employee: Request Check-in */}
           {session?.user?.role === "EMPLOYEE" && (
             <Button
@@ -238,7 +238,7 @@ export default function AttendancePage() {
         </Card>
       )}
 
-      <div className="flex gap-2 mb-4">
+      <div className="flex flex-wrap gap-2 mb-4">
         <Button
           variant={filter === "all" ? "default" : "outline"}
           size="sm"
@@ -280,67 +280,69 @@ export default function AttendancePage() {
               <Loader2 className="w-6 h-6 animate-spin" />
             </div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Employee</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Request Status</TableHead>
-                  <TableHead>Check In</TableHead>
-                  <TableHead>Reviewed By</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredAttendances.length > 0 ? (
-                  filteredAttendances.map((attendance) => (
-                    <TableRow key={attendance._id}>
-                      <TableCell className="font-medium">
-                        {attendance.userId?.name || "Unknown"}
-                      </TableCell>
-                      <TableCell>
-                        {new Date(attendance.date).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell>
-                        {attendance.requestStatus === "APPROVED" ? (
-                          getStatusBadge(attendance.status)
-                        ) : (
-                          <Badge variant="outline">-</Badge>
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        {getRequestStatusBadge(attendance.requestStatus)}
-                      </TableCell>
-                      <TableCell>
-                        {formatTime(attendance.checkIn)}
-                      </TableCell>
-                      <TableCell>
-                        {attendance.reviewedBy?.name || "-"}
-                      </TableCell>
-                      <TableCell>
-                        {attendance.requestStatus === "PENDING" &&
-                          session?.user?.role !== "EMPLOYEE" && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleApproveClick(attendance)}
-                            >
-                              Review
-                            </Button>
+            <ResponsiveTable>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Employee</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Request Status</TableHead>
+                    <TableHead>Check In</TableHead>
+                    <TableHead>Reviewed By</TableHead>
+                    <TableHead>Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredAttendances.length > 0 ? (
+                    filteredAttendances.map((attendance) => (
+                      <TableRow key={attendance._id}>
+                        <TableCell className="font-medium">
+                          {attendance.userId?.name || "Unknown"}
+                        </TableCell>
+                        <TableCell>
+                          {new Date(attendance.date).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell>
+                          {attendance.requestStatus === "APPROVED" ? (
+                            getStatusBadge(attendance.status)
+                          ) : (
+                            <Badge variant="outline">-</Badge>
                           )}
+                        </TableCell>
+                        <TableCell>
+                          {getRequestStatusBadge(attendance.requestStatus)}
+                        </TableCell>
+                        <TableCell>
+                          {formatTime(attendance.checkIn)}
+                        </TableCell>
+                        <TableCell>
+                          {attendance.reviewedBy?.name || "-"}
+                        </TableCell>
+                        <TableCell>
+                          {attendance.requestStatus === "PENDING" &&
+                            session?.user?.role !== "EMPLOYEE" && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleApproveClick(attendance)}
+                              >
+                                Review
+                              </Button>
+                            )}
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={7} className="text-center text-gray-500 py-8">
+                        No attendance records found
                       </TableCell>
                     </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={7} className="text-center text-gray-500 py-8">
-                      No attendance records found
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
+                  )}
+                </TableBody>
+              </Table>
+            </ResponsiveTable>
           )}
         </CardContent>
       </Card>

@@ -333,15 +333,11 @@ export default function LeavesPage() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">
-            Leave Requests
-          </h1>
-          <p className="mt-1 text-sm text-gray-500">
-            {isEmployee
-              ? "Submit and track your leave requests."
-              : "Review and manage employee leave requests."}
+          <h1 className="text-2xl sm:text-3xl font-bold">Leave Requests</h1>
+          <p className="text-sm text-gray-500 mt-1">
+            {isEmployee ? "Submit and track" : "Review and manage"}
           </p>
         </div>
 
@@ -378,20 +374,15 @@ export default function LeavesPage() {
       {isReviewer && (
         <Card className="mb-4">
           <CardContent className="p-4">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4">
               {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  placeholder="Search by employee name or email..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+                <Input placeholder="Search..." className="pl-10" />
               </div>
 
               {/* Filters */}
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Select value={leaveTypeFilter} onValueChange={setLeaveTypeFilter}>
                   <SelectTrigger className="w-[150px]">
                     <SelectValue placeholder="Leave Type" />
@@ -676,8 +667,8 @@ export default function LeavesPage() {
               {reviewAction === "APPROVE"
                 ? "Approve Leave Request"
                 : reviewAction === "REJECT"
-                ? "Reject Leave Request"
-                : "Update Leave Status"}
+                  ? "Reject Leave Request"
+                  : "Update Leave Status"}
             </DialogTitle>
             <DialogDescription>
               {selectedLeave?.userId?.name &&
@@ -788,7 +779,7 @@ export default function LeavesPage() {
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="w-[95vw] sm:max-w-[425px]">
           <AlertDialogHeader>
             <AlertDialogTitle>
               {selectedLeaves.size > 1
