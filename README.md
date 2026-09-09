@@ -2,7 +2,7 @@
 
 A comprehensive HR Management System built with Next.js 15, TypeScript, and MongoDB. This application streamlines employee management, attendance tracking, and leave request workflows for modern organizations.
 
-![HR ERP Dashboard](./screenshots/dashboard.png)
+![HR ERP Dashboard](https://github.com/user-attachments/assets/7122b496-d230-4842-a88a-15a01ab91c80)
 
 ## ✨ Features
 
@@ -71,42 +71,57 @@ A comprehensive HR Management System built with Next.js 15, TypeScript, and Mong
 - MongoDB Atlas account (free tier works)
 - npm or yarn
 
-### Installation
+# HR ERP
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/hr-erp.git
-   cd hr-erp
-2. **Install dependencies**
+## Installation
 
-Bash
+### 1. Clone the repository
 
+```bash
+git clone https://github.com/yourusername/hr-erp.git
+cd hr-erp
+```
+
+### 2. Install dependencies
+
+```bash
 npm install
-3. **Set up environment variables**
+```
 
-Create a .env file in the root directory:
+### 3. Create a `.env` file
 
-env
+Create a `.env` file in the root directory and add the following:
 
+```env
 MONGODB_URI="your-mongodb-connection-string"
 NEXTAUTH_SECRET="your-secret-key"
 NEXTAUTH_URL="http://localhost:3000"
-4. **Run the development server**
+```
 
-Bash
+### 4. Run the development server
 
+```bash
 npm run dev
-5. **Open your browser**
+```
 
-Navigate to http://localhost:3000
+### 5. Open your browser
 
-Default Admin Credentials
+Navigate to:
+
+```text
+http://localhost:3000
+```
+
+## Default Admin Credentials
+
 After running the seed script:
 
-Email: admin@hrerp.com
-Password: admin123
+- **Email:** `admin@hrerp.com`
+- **Password:** `admin123`
 
-**Project Structure**
+## Project Structure
+
+```text
 hr-erp/
 ├── src/
 │   ├── app/
@@ -117,21 +132,52 @@ hr-erp/
 │   │   │   └── leaves/
 │   │   ├── api/
 │   │   │   ├── auth/
+│   │   │   │   └── [...nextauth]/
 │   │   │   ├── employees/
 │   │   │   ├── attendance/
-│   │   │   └── leaves/
+│   │   │   ── leaves/
 │   │   └── login/
 │   ├── components/
 │   │   ├── layout/
+│   │   │   ├── MobileSidebar.tsx
+│   │   │   ── Sidebar.tsx
 │   │   ├── ui/
 │   │   ├── employees/
 │   │   ├── attendance/
-│   │   ── leaves/
+│   │   └── leaves/
 │   ├── lib/
+│   │   ├── auth.ts
+│   │   ├── mongodb.ts
+│   │   └── utils.ts
 │   ├── models/
-│   └── types/
+│   │   ├── User.ts
+│   │   ├── Attendance.ts
+│   │   └── LeaveRequest.ts
+│   ── types/
+│       └── next-auth.d.ts
 ├── public/
 ├── .env
+├── .gitignore
 ├── next.config.ts
-── package.json
+├── package.json
+── tailwind.config.ts
 └── README.md
+```
+
+## Screenshots
+
+### 1. Dashboard
+
+![Dashboard](https://github.com/user-attachments/assets/7122b496-d230-4842-a88a-15a01ab91c80)
+
+### 2. Employee List & Management
+
+![Employee List](https://github.com/user-attachments/assets/8ae8f284-866c-46d0-8c78-a06dbce657b1)
+
+### 3. Attendance Request & Management
+
+![Attendance Management](https://github.com/user-attachments/assets/422a12eb-d0d1-430c-827a-43e0daeb64a6)
+
+### 4. Leave Request & Management
+
+![Leave Management](https://github.com/user-attachments/assets/d451bac6-b052-4e72-9f8e-20b4140dca6a)
