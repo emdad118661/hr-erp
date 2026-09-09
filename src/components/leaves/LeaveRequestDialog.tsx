@@ -37,17 +37,18 @@ export default function LeaveRequestDialog({
   resubmitData,
 }: Props) {
   const [loading, setLoading] = useState(false);
+  // Form state
   const [form, setForm] = useState({
     type: "CASUAL",
-    startDate: "",
-    endDate: "",
+    startDate: new Date().toISOString().slice(0, 10),
+    endDate: new Date().toISOString().slice(0, 10),
     reason: "",
   });
 
   useEffect(() => {
     if (open) {
       if (resubmitData) {
-        // Resubmit mode — পুরনো তথ্য prefill
+        // Resubmit mode — prefill the form with previous data
         setForm({
           type: resubmitData.type || "CASUAL",
           startDate: resubmitData.startDate
@@ -113,16 +114,17 @@ export default function LeaveRequestDialog({
               <Label>Leave Type</Label>
               <Select
                 value={form.type}
-                onValueChange={(v) => setForm({ ...form, type: v })}
+                onValueChange={(value) => setForm({ ...form, type: value || "CASUAL" })}
               >
                 <SelectTrigger>
-                  <SelectValue />
+                  <SelectValue placeholder="Select leave type" />
                 </SelectTrigger>
+
                 <SelectContent>
                   <SelectItem value="CASUAL">Casual Leave</SelectItem>
                   <SelectItem value="SICK">Sick Leave</SelectItem>
                   <SelectItem value="ANNUAL">Annual Leave</SelectItem>
-                  <SelectItem value="EMERGENCY">Emergency Leave</SelectItem>
+                  <SelectItem value="UNPAID">Unpaid Leave</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -177,8 +179,8 @@ export default function LeaveRequestDialog({
               {loading
                 ? "Submitting..."
                 : resubmitData
-                ? "Resubmit Request"
-                : "Submit Request"}
+                  ? "Resubmit Request"
+                  : "Submit Request"}
             </Button>
           </DialogFooter>
         </form>

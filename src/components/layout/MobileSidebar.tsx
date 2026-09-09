@@ -15,7 +15,7 @@ import {
   UserCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 interface MobileSidebarProps {
   user: {
@@ -42,15 +42,18 @@ export default function MobileSidebar({ user }: MobileSidebarProps) {
       <header className="lg:hidden sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div className="flex h-14 items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            {/* ✅ SheetTrigger এ সরাসরি Button ব্যবহার করুন (asChild ছাড়া) */}
-            <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden">
-                  <Menu className="h-5 w-5" />
-                  <span className="sr-only">Toggle Menu</span>
-                </Button>
-              </SheetTrigger>
+            {/* ✅ বাটনটি এখন সরাসরি স্টেট নিয়ন্ত্রণ করবে (Nested button বা asChild এর ঝামেলা নেই) */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle Menu</span>
+            </Button>
 
+            <Sheet open={open} onOpenChange={setOpen}>
               <SheetContent side="left" className="w-[300px] sm:w-[400px] p-0">
                 <div className="flex h-full flex-col">
                   {/* Logo */}

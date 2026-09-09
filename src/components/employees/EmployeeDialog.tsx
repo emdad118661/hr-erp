@@ -165,9 +165,7 @@ export default function EmployeeDialog({
               <Label htmlFor="role">Role</Label>
               <Select
                 value={formData.role}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, role: value })
-                }
+                onValueChange={(value) => setFormData({ ...formData, role: value || "EMPLOYEE" })}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select role" />

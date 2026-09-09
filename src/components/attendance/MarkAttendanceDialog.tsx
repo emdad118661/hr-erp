@@ -191,7 +191,7 @@ export default function MarkAttendanceDialog({
                 <Label>Employee</Label>
                 <Select
                   value={form.userId}
-                  onValueChange={(v) => setForm({ ...form, userId: v })}
+                  onValueChange={(v) => setForm({ ...form, userId: v || "" })}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select employee" />
@@ -221,7 +221,7 @@ export default function MarkAttendanceDialog({
               <Label>Status</Label>
               <Select
                 value={form.status}
-                onValueChange={(v) => setForm({ ...form, status: v })}
+                onValueChange={(v) => setForm({ ...form, status: v || "PRESENT" })}
               >
                 <SelectTrigger>
                   <SelectValue />

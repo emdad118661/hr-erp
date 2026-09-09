@@ -383,7 +383,7 @@ export default function LeavesPage() {
 
               {/* Filters */}
               <div className="flex flex-wrap gap-2">
-                <Select value={leaveTypeFilter} onValueChange={setLeaveTypeFilter}>
+                <Select value={leaveTypeFilter} onValueChange={(val) => setLeaveTypeFilter(val || "ALL")}>
                   <SelectTrigger className="w-[150px]">
                     <SelectValue placeholder="Leave Type" />
                   </SelectTrigger>
