@@ -77,3 +77,61 @@ A comprehensive HR Management System built with Next.js 15, TypeScript, and Mong
    ```bash
    git clone https://github.com/yourusername/hr-erp.git
    cd hr-erp
+2. **Install dependencies**
+
+Bash
+
+npm install
+3. **Set up environment variables**
+
+Create a .env file in the root directory:
+
+env
+
+MONGODB_URI="your-mongodb-connection-string"
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+4. **Run the development server**
+
+Bash
+
+npm run dev
+5. **Open your browser**
+
+Navigate to http://localhost:3000
+
+Default Admin Credentials
+After running the seed script:
+
+Email: admin@hrerp.com
+Password: admin123
+
+**Project Structure**
+hr-erp/
+├── src/
+│   ├── app/
+│   │   ├── (dashboard)/
+│   │   │   ├── dashboard/
+│   │   │   ├── employees/
+│   │   │   ├── attendance/
+│   │   │   └── leaves/
+│   │   ├── api/
+│   │   │   ├── auth/
+│   │   │   ├── employees/
+│   │   │   ├── attendance/
+│   │   │   └── leaves/
+│   │   └── login/
+│   ├── components/
+│   │   ├── layout/
+│   │   ├── ui/
+│   │   ├── employees/
+│   │   ├── attendance/
+│   │   ── leaves/
+│   ├── lib/
+│   ├── models/
+│   └── types/
+├── public/
+├── .env
+├── next.config.ts
+── package.json
+└── README.md
