@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -43,6 +44,12 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <Link
+        href="/"
+        className="absolute top-4 left-4 text-sm text-gray-600 hover:text-gray-900 flex items-center gap-2"
+      >
+        ← Back to Home
+      </Link>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>HR ERP Login</CardTitle>
